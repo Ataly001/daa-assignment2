@@ -14,9 +14,13 @@ public class DynamicArray {
     }
 
     public DynamicArray(int initialCapacity) {
-        this.capacity = initialCapacity;
-        this.data = new int[initialCapacity];
-        this.size = 0;
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException("Capacity cannot be negative");
+        }
+
+        capacity = Math.max(1, initialCapacity);
+        data = new int[capacity];
+        size = 0;
     }
 
     private void ensureCapacity() {
